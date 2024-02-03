@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class SwerveSubsystem extends SubsystemBase {
-  public AHRS navx = new AHRS(SPI.Port.kMXP);
+  public AHRS navx = new AHRS(SerialPort.Port.kUSB);
 
   private SwerveDriveOdometry swerveOdometry;
   private SwerveModule[] mSwerveMods;
