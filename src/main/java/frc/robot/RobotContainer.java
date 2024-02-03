@@ -84,9 +84,15 @@ public class RobotContainer {
   private void configureBindings() {
     m_XboxController.button(Button.kY.value).onTrue(new InstantCommand(() -> m_SwerveSubsystem.zeroGyro()));
     m_XboxController.button(Button.kB.value).onTrue(new InstantCommand(() -> m_SwerveSubsystem.setWheelsToX()));
+    m_XboxController.button(Button.kX.value).onTrue(getTranslationAxis());
    
   }
 
+  private void getTranslationAxis() {
+    System.out.print(() -> -m_XboxController.getRawAxis(translationAxis));
+  }
+
+  
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
@@ -96,4 +102,5 @@ public class RobotContainer {
     // An example command will be run in autonomous
     return new HighCubeBalance(m_SwerveSubsystem);
   }
+
 }
