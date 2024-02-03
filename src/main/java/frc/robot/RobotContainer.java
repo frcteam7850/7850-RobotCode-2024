@@ -66,10 +66,12 @@ public class RobotContainer {
           () -> -m_XboxController.getRawAxis(translationAxis),
           () -> -m_XboxController.getRawAxis(strafeAxis),
           () -> -m_XboxController.getRawAxis(rotationAxis),
-          () -> robotCentric.getAsBoolean()));
+          () -> robotCentric.getAsBoolean(),
+          () -> -m_XboxController.getRawAxis(strafeAxis)));
 
     // Configure the trigger bindings
     configureBindings();
+   System.out.println(/*-m_XboxController.getRawAxis(*/translationAxis/* ) */);
   }
 
   /**
@@ -84,13 +86,9 @@ public class RobotContainer {
   private void configureBindings() {
     m_XboxController.button(Button.kY.value).onTrue(new InstantCommand(() -> m_SwerveSubsystem.zeroGyro()));
     m_XboxController.button(Button.kB.value).onTrue(new InstantCommand(() -> m_SwerveSubsystem.setWheelsToX()));
-    m_XboxController.button(Button.kX.value).onTrue(getTranslationAxis());
    
   }
 
-  private void getTranslationAxis() {
-    System.out.print(() -> -m_XboxController.getRawAxis(translationAxis));
-  }
 
   
   /**

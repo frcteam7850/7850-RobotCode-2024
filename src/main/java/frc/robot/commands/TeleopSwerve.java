@@ -20,6 +20,7 @@ public class TeleopSwerve extends Command {
   private DoubleSupplier m_strafeSupplier;
   private DoubleSupplier m_rotationSupplier;
   private BooleanSupplier m_robotCentricSupplier;
+  private DoubleSupplier hi;
 
   private SlewRateLimiter translationLimiter = new SlewRateLimiter(3.0); //can only change by 3 m/s in the span of 1 s
   private SlewRateLimiter strafeLimiter = new SlewRateLimiter(3.0);
@@ -29,7 +30,7 @@ public class TeleopSwerve extends Command {
       DoubleSupplier translationSupplier,
       DoubleSupplier strafeSupplier,
       DoubleSupplier rotationSupplier,
-      BooleanSupplier robotCentricSupplier) {
+      BooleanSupplier robotCentricSupplier, DoubleSupplier hello) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.m_SwerveSubsystem = SwerveSubsystem;
     addRequirements(m_SwerveSubsystem);
@@ -37,6 +38,7 @@ public class TeleopSwerve extends Command {
     this.m_strafeSupplier = strafeSupplier;
     this.m_rotationSupplier = rotationSupplier;
     this.m_robotCentricSupplier = robotCentricSupplier;
+    this.hi = hello;
   }
 
   // Called when the command is initially scheduled.
@@ -46,6 +48,7 @@ public class TeleopSwerve extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println("raw  - " + hi.getAsDouble());
         /* Get Values, applies Deadband, (doesnt do anything if stick is less than a value)*/
     double translationVal =
         translationLimiter.calculate(
@@ -56,6 +59,7 @@ public class TeleopSwerve extends Command {
     double rotationVal =
         rotationLimiter.calculate(
             MathUtil.applyDeadband(m_rotationSupplier.getAsDouble(), Constants.SwerveConstants.inputDeadband));
+            System.out.println("calc - " + strafeVal);
 
     /* Drive */
     m_SwerveSubsystem.drive(
