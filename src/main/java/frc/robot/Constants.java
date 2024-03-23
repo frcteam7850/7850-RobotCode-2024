@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.revrobotics.CANSparkBase.IdleMode;
 
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -14,6 +13,8 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 import frc.lib.SwerveModuleConstants;
 
+import frc.robot.RobotContainer;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -22,7 +23,7 @@ import frc.lib.SwerveModuleConstants;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {
+public final class Constants extends RobotContainer{
   public static final class SwerveConstants{
     public static final double inputDeadband = .1;
     public static final boolean invertnavx = false;
@@ -99,7 +100,7 @@ public final class Constants {
       public static final int driveMotorID = 7; 
       public static final int angleMotorID = 9; 
       public static final int canCoderID = 8;
-      public static final Rotation2d angleOffset = Rotation2d.fromDegrees(345.7);
+      public static final Rotation2d angleOffset = Rotation2d.fromDegrees(347.7);
     /* Angle Motor PID Values */
       public static final double angleKP = 0.01; //to tune
       public static final double angleKI = 0.0; //to tune
@@ -116,7 +117,7 @@ public final class Constants {
       public static final int driveMotorID = 4;
       public static final int angleMotorID = 6;
       public static final int canCoderID = 5;
-      public static final Rotation2d angleOffset = Rotation2d.fromDegrees(201.8);
+      public static final Rotation2d angleOffset = Rotation2d.fromDegrees(196.8);
       /* Angle Motor PID Values */
       public static final double angleKP = 0.01; //to tune
       public static final double angleKI = 0.0; //to tune
@@ -165,16 +166,11 @@ public final class Constants {
 
     public static final boolean angleMotorInvert = false;
     public static final boolean driveMotorInvert = false;
-
-    
-
-
-
   }
 
   public static final class AutoConstants {
     public static final double kMaxSpeedMetersPerSecond = 1.75;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 2;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 1.5; //Changed 3/9/24
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
@@ -188,6 +184,78 @@ public final class Constants {
             kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
   }
 
+  public static class OperatorConstants {
+    public static class JoystickConstants {
+      public static final int StickPort = 1; //Maybe change this?
+      public static final double kDeadband = 0.12;
+      public static final int kArmYAxis = 1;
+    }
 
+    public static class ArmConstants {
+      //PID Tuning Values
+      public static final double Kp = 12;     //tune these bro :sob:
+      public static final double Ki = 0;
+      public static final double Kd = .1;
+      public static final double kFF = 0;  //do we even need ff? 
 
-}
+      public static final double kZeroSetpoint = 0;
+      public static final double kSourceSetpoint = 0.19;
+      public static final double kSpeakerSetpoint = 0.5;
+
+      // Inverted?
+      public static final boolean ArmMotor1IsInverted = true;
+      public static final boolean ArmMotor2IsInverted = true;
+
+      //Conversion Factors
+      public static final double kDegreesToRotations = (1/30);
+
+      public static final double kRotationsToAbsolute = 60.77;
+      //to explain: 60.77 rotations of the motor is when the abs encder will show 1
+      public static final double kRotationsToDegrees = 2.88; // theoretical best
+
+      //CanIDS
+      public static final int kArmMotor1ID = 45; //Change this before use //🟡
+      public static final int kArmMotor2ID = 44; //Change this before use //🟡
+
+      //Misc
+      public static final double NegMaxPIDRange = -0.5; 
+      public static final double PosMaxPIDRange = 0.5;
+
+      //public static final int kDriverControllerPort = 1; 
+
+      public static final int kAltEncoderCountsPerRev = 4096;
+
+      public static final double kArmSpeed = 0.2;
+
+      //Controller button vals
+      public static final int ArmPIDButtonValue1 = 1; //Button assignment on the shooter/arm controller
+      public static final int ArmPIDButtonValue2 = 2; //Button assignment on the shooter/arm controller 
+      public static final int ArmPIDButtonValue3 = 3; //Button assignment on the shooter/arm controller     
+    }
+
+    public static class ShooterConstants {
+
+      //Ids
+      public static final int kMotor1ID = 50; 
+      public static final int kMotor2ID = 51; 
+      public static final int kMotor3ID = 52;
+      public static final int kMotor4ID = 53;
+
+      //Speeds
+      public static final double kShooterSpeedLow = -0.2; 
+      public static final double kShooterRevSpeed = 0.3;
+      public static final double kIntakeSpeed = -0.2; 
+
+      public static final double kShooterSpeedHigh = -1; 
+      public static final double kIntakeRevSpeed = 0.35; 
+
+      //Button Assignments
+      public static final int IntakeButton = 8; //Button assignment on the shooter/arm controller
+      public static final int IntakeRevButton = 6; //Button assignment on the shooter/arm controller 
+
+      public static final int shootAmp = 5; //Button assignment on the shooter/arm controller
+      public static final int shootSpeaker = 7; //Button assignment on the shooter/arm controller 
+    }
+    }
+  }
+

@@ -2,6 +2,9 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+//Thank you to team 3926 for supplying us with their code and Alex for debugging with us!
+
+
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
@@ -92,7 +95,7 @@ public class SwerveModule {
     public void setDesiredState(SwerveModuleState desiredState, boolean isOpenLoop) {
         // Custom optimize command, since default WPILib optimize assumes continuous controller which
         // REV supports this now so dont have to worry with rev, but need some funky configs i dont want to do
-        //have to be sad with falcons but thats what you get for giving money to Tony
+        //have to be sad with falcons but thats what you get for giving money to Tony (Once again, who is tony?!)
         desiredState = OnboardModuleState.optimize(desiredState, getState().angle);
         
         setAngle(desiredState);
@@ -114,7 +117,6 @@ public class SwerveModule {
         }
     }
 
-
     private void setAngle(SwerveModuleState desiredState){
         //Prevent rotating module if speed is less then 1%. Prevents Jittering.
         //the ? and : are a shorthand for an if-else loop
@@ -124,14 +126,11 @@ public class SwerveModule {
         lastAngle = angle;
     }
 
-
-
-
     private void resetToAbsolute() {
         double absolutePosition = getCanCoder().getDegrees() - angleOffset.getDegrees();
         integratedAngleEncoder.setPosition(absolutePosition); //may need to change 
 
-      }
+    }
     
     public Rotation2d getCanCoder(){
         return Rotation2d.fromDegrees(angleEncoder.getAbsolutePosition());
@@ -200,15 +199,6 @@ public class SwerveModule {
     private Rotation2d getAngle(){
         return Rotation2d.fromDegrees(integratedAngleEncoder.getPosition());
     }
-    
-
-
-
-
-
-
-
-
 
   
 
