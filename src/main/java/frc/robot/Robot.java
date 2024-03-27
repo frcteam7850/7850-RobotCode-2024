@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-//WPILib comments have been removed; if viewing this code to learn, open a new TimedRobot template in WPILib VScode
+//WPILib comments have been removed. If viewing this code to learn, open a new TimedRobot template in WPILib VScode
 
 //Imports
 package frc.robot;

@@ -186,17 +186,17 @@ public final class Constants extends RobotContainer{
 
   public static class OperatorConstants {
     public static class JoystickConstants {
-      public static final int StickPort = 1; //Maybe change this?
+      public static final int StickPort = 1; //If your controller is unresponsive, make sure you plugged in the XBOX controller first (Stickport 0), and then the logitech (Stickport 1)
       public static final double kDeadband = 0.12;
       public static final int kArmYAxis = 1;
     }
 
     public static class ArmConstants {
       //PID Tuning Values
-      public static final double Kp = 12;     //tune these bro :sob:
+      public static final double Kp = 12;  //tune these bro :sob:
       public static final double Ki = 0;
       public static final double Kd = .1;
-      public static final double kFF = 0;  //do we even need ff? 
+      public static final double kFF = 0;  //We may not need a FeedForward. 
 
       public static final double kZeroSetpoint = 0;
       public static final double kSourceSetpoint = 0.19;
@@ -206,22 +206,15 @@ public final class Constants extends RobotContainer{
       public static final boolean ArmMotor1IsInverted = true;
       public static final boolean ArmMotor2IsInverted = true;
 
-      //Conversion Factors
-      public static final double kDegreesToRotations = (1/30);
-
-      public static final double kRotationsToAbsolute = 60.77;
-      //to explain: 60.77 rotations of the motor is when the abs encder will show 1
-      public static final double kRotationsToDegrees = 2.88; // theoretical best
-
-      //CanIDS
-      public static final int kArmMotor1ID = 45; //Change this before use //🟡
-      public static final int kArmMotor2ID = 44; //Change this before use //🟡
+      //CanIDS 
+      public static final int kArmMotor1ID = 45; 
+      public static final int kArmMotor2ID = 44; 
+      public static final int kClimberMotor1ID = 51;
+      public static final int kClimberMotor2ID = 52;
 
       //Misc
       public static final double NegMaxPIDRange = -0.5; 
       public static final double PosMaxPIDRange = 0.5;
-
-      //public static final int kDriverControllerPort = 1; 
 
       public static final int kAltEncoderCountsPerRev = 4096;
 
@@ -231,6 +224,7 @@ public final class Constants extends RobotContainer{
       public static final int ArmPIDButtonValue1 = 1; //Button assignment on the shooter/arm controller
       public static final int ArmPIDButtonValue2 = 2; //Button assignment on the shooter/arm controller 
       public static final int ArmPIDButtonValue3 = 3; //Button assignment on the shooter/arm controller     
+
     }
 
     public static class ShooterConstants {
@@ -255,7 +249,29 @@ public final class Constants extends RobotContainer{
 
       public static final int shootAmp = 5; //Button assignment on the shooter/arm controller
       public static final int shootSpeaker = 7; //Button assignment on the shooter/arm controller 
+
+    
     }
+    public static class ClimberConstants {
+      //CanIDs
+      public static final int kClimberMotor1ID = 51;
+      public static final int kClimberMotor2ID = 52;
+
+      //Speed
+      public static final double kClimberSpeed = 0.3;
+
+      //Button Assignment 
+      public static final double kClimberSafetyButton = 9;
+      public static final double kClimberButton = 9;
+
+      //Distance (in motor rotations)
+      public static final int kMotorRotations = 10; //Change
+
+      //PID
+      public static final double Kp = 12;
+      public static final double Ki = 0;
+      public static final double Kd = .1;
     }
   }
+}
 

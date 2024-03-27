@@ -12,7 +12,6 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkFlex;
 import com.revrobotics.RelativeEncoder;
 
-import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.OperatorConstants.ArmConstants;
@@ -24,7 +23,6 @@ public class IntakeSubsystem extends SubsystemBase {
       private CANSparkFlex IntakeMotor2;
       private RelativeEncoder IntakeMotor1Encoder;
       private RelativeEncoder IntakeMotor2Encoder;
-      private double GagaGogo;
 
     public IntakeSubsystem(){
       IntakeMotor1 = new CANSparkFlex(ShooterConstants.kMotor2ID, MotorType.kBrushless);
