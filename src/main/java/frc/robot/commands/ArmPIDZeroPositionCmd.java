@@ -31,10 +31,7 @@ public class ArmPIDZeroPositionCmd extends Command {
 
   @Override
   public void execute() {
-
-    if (Math.abs(m_ArmSubsystem.GetEncoderPos() - ArmConstants.kZeroSetpoint) < 0.01) finish = true;
-
-      m_ArmSubsystem.SetPosition(ArmConstants.kZeroSetpoint);
+      m_ArmSubsystem.SetPosition(ArmConstants.kZeroSetpoint - 0.03);
     //Will equal 0 degrees
   }
 
@@ -46,9 +43,7 @@ public class ArmPIDZeroPositionCmd extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("ZERO END");
-    return finish;
-
+    return false;
   }
 }
 

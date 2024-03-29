@@ -40,13 +40,12 @@ public class ArmPIDSpeakerCmd extends Command {
   @Override
   public void end(boolean interrupted) {
     m_ArmSubsystem.StopMotor();
-    System.out.println("SPEAKER END");
- }
+   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return finish;
+    return false;
   }
 }
 

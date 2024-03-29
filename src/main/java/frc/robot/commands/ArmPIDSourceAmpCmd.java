@@ -31,22 +31,26 @@ public class ArmPIDSourceAmpCmd extends Command {
 
   @Override
   public void execute() {
-
-    if (Math.abs(m_ArmSubsystem.GetEncoderPos() - ArmConstants.kZeroSetpoint) < 0.01) finish = true;
-
       m_ArmSubsystem.SetPosition(ArmConstants.kSpeakerSetpoint);
+      if((ArmConstants.kSpeakerSetpoint + ArmConstants.kPIDShutdownRange) > ArmSubsystem.GetEncoderPos()) {
+        finish = true;
+      }
+      if((ArmConstants.kSpeakerSetpoint - ArmConstants.kPIDShutdownRange) < ArmSubsystem.GetEncoderPos()) {
+        finish = true;
+      }
     //Will equal 0 degrees
   }
 
   @Override
   public void end(boolean interrupted) {
     m_ArmSubsystem.StopMotor();
+    System.out.println("finish1");
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("ZERO END");
+    System.out.println("y");
     return finish;
   }
 }

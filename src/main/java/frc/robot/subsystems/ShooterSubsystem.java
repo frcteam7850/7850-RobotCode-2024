@@ -36,11 +36,8 @@ public class ShooterSubsystem extends SubsystemBase {
     public void RunShooter(boolean speed){
       if (!speed){
         ShooterMotor1.set(ShooterConstants.kShooterSpeedLow);
-        System.out.println("Bega");
       } else { 
         ShooterMotor1.set(ShooterConstants.kShooterSpeedHigh);
-        System.out.println("Gega");
-
       }
     }
     //End shooter code

@@ -24,13 +24,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "ShooterSpeakerCmd(START)"
+                  "name": "ArmPIDSpeakerCmd"
                 }
               },
               {
                 "type": "path",
                 "data": {
-                  "pathName": "Simple_Path"
+                  "pathName": "Simple_Path2"
                 }
               }
             ]

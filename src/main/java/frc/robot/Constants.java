@@ -202,7 +202,7 @@ public final class Constants extends RobotContainer{
 
       public static final double kZeroSetpoint = 0;
       public static final double kSourceSetpoint = 0.53;
-      public static final double kSpeakerSetpoint = 0.19;                
+      public static final double kSpeakerSetpoint = 0.315; //0.19  
 
       // Inverted?
       public static final boolean ArmMotor1IsInverted = true;
@@ -222,6 +222,8 @@ public final class Constants extends RobotContainer{
 
       public static final double kArmSpeed = 0.2;
 
+      public static final double kPIDShutdownRange = 0.02;
+
       //Controller button vals
       public static final int ArmPIDButtonValue1 = 1; //Button assignment on the shooter/arm controller
       public static final int ArmPIDButtonValue2 = 2; //Button assignment on the shooter/arm controller 
@@ -239,11 +241,10 @@ public final class Constants extends RobotContainer{
 
       //Speeds
       public static final double kShooterSpeedLow = -0.17; 
-      public static final double kShooterRevSpeed = 0.3;
       public static final double kIntakeSpeed = -0.2; 
 
       public static final double kShooterSpeedHigh = -1; 
-      public static final double kIntakeRevSpeed = 0.35; 
+      public static final double kIntakeRevSpeed = 0.2; 
 
       //Button Assignments
       public static final int IntakeButton = 8; //Button assignment on the shooter/arm controller

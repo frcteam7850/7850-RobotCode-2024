@@ -121,10 +121,6 @@ public class RobotContainer {
      ShooterStopButton.onTrue(new ShooterAmpCmd(m_ShooterSubsystem, false));
      IntakeStopButton.onTrue(new ShooterIntakeCmd(m_IntakeSubsystem, false));
 
-
-    
-       //We have to do this twice because the SparkFlexes dont like .WhileTrue, Also helps with the bool. 
-
      IntakeButton.onFalse(new ShooterIntakeCmd(m_IntakeSubsystem, false));
     //  ShootAmpButton.onFalse(new ShooterAmpCmd(m_ShooterSubsystem, false));
      IntakeRevButton.onFalse(new ShooterIntakeRevCmd(m_IntakeSubsystem, false));
@@ -150,7 +146,8 @@ public class RobotContainer {
         //After that you actually return AutoBuilder.followPath(variable)
 
       //For an Auto:
-        //
+        //return new PathPlannerAuto("AutoName")
+        
        return new PathPlannerAuto("Test_Auto");
     }    
   }

@@ -35,7 +35,7 @@ public class ArmSubsystem extends SubsystemBase {
        private final SparkPIDController PIDMotorController;
 
       //Rev Hex Encoder
-       private CANEncoder AbsoluteEncoder;
+       static private CANEncoder AbsoluteEncoder;
     
     public ArmSubsystem(){
        // //Instantiating Vars
@@ -84,7 +84,7 @@ public class ArmSubsystem extends SubsystemBase {
            PIDMotorController.setReference(setpoint + 0.04, CANSparkBase.ControlType.kPosition);
     }
 
-    public double GetEncoderPos(){
+    static public double GetEncoderPos(){
       return AbsoluteEncoder.getPosition();
     }
 
