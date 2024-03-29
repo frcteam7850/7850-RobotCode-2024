@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
 
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -11,6 +12,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.lib.SwerveModuleConstants;
 
 import frc.robot.RobotContainer;
@@ -199,8 +201,8 @@ public final class Constants extends RobotContainer{
       public static final double kFF = 0;  //We may not need a FeedForward. 
 
       public static final double kZeroSetpoint = 0;
-      public static final double kSourceSetpoint = 0.19;
-      public static final double kSpeakerSetpoint = 0.5;
+      public static final double kSourceSetpoint = 0.53;
+      public static final double kSpeakerSetpoint = 0.19;                
 
       // Inverted?
       public static final boolean ArmMotor1IsInverted = true;
@@ -236,7 +238,7 @@ public final class Constants extends RobotContainer{
       public static final int kMotor4ID = 53;
 
       //Speeds
-      public static final double kShooterSpeedLow = -0.2; 
+      public static final double kShooterSpeedLow = -0.17; 
       public static final double kShooterRevSpeed = 0.3;
       public static final double kIntakeSpeed = -0.2; 
 

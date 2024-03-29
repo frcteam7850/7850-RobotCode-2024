@@ -87,6 +87,9 @@ public class SwerveSubsystem extends SubsystemBase {
     );
   }
 
+
+
+
   public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop)
   //takes the coordinate on field wants to go to, the rotation of it, whether or not in field relative mode, and if in open loop control
   {
@@ -106,6 +109,19 @@ public class SwerveSubsystem extends SubsystemBase {
     mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
   }
 }
+
+//Added attempting to make our autos work. May not.
+  public void driveRobotRelative(ChassisSpeeds robotRelativeSpeeds) {
+    ChassisSpeeds targetSpeeds = ChassisSpeeds.discretize(robotRelativeSpeeds, 0.02);
+
+    SwerveModuleState[] targetStates = SwerveConstants.swerveKinematics.toSwerveModuleStates(targetSpeeds);
+    setModuleStates(targetStates);
+
+  }
+
+
+
+
 
   /* Used by SwerveControllerCommand in Auto */
   public void setModuleStates(SwerveModuleState[] desiredStates) {
@@ -129,14 +145,7 @@ public class SwerveSubsystem extends SubsystemBase {
     return SwerveConstants.swerveKinematics.toChassisSpeeds(getStates());
   }
 
-  //Added attempting to make our autos work. May not.
-  public void driveRobotRelative(ChassisSpeeds robotRelativeSpeeds) {
-    ChassisSpeeds targetSpeeds = ChassisSpeeds.discretize(robotRelativeSpeeds, 0.02);
-
-    SwerveModuleState[] targetStates = SwerveConstants.swerveKinematics.toSwerveModuleStates(targetSpeeds);
-    setModuleStates(targetStates);
-
-  }
+  
 
 
   public void setWheelsToX() {

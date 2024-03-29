@@ -5,16 +5,35 @@
       "x": 2.0,
       "y": 7.0
     },
-    "rotation": 0
+    "rotation": -179.1174421943005
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "sequential",
           "data": {
-            "pathName": "Simple_Path"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Simple_Path"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "ShooterSpeakerCmd(START)"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "Simple_Path"
+                }
+              }
+            ]
           }
         }
       ]

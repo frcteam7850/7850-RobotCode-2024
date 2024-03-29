@@ -57,7 +57,7 @@ public class RobotContainer {
   private final JoystickButton  ShootAmpButton = new JoystickButton(Stick, ShooterConstants.shootAmp);
   private final JoystickButton  ShootSpeakerButton = new JoystickButton(Stick, ShooterConstants.shootSpeaker);
   private final JoystickButton  ShooterStopButton = new JoystickButton(Stick, 9);
-  private final JoystickButton  IntakeStopButton = new JoystickButton(Stick, 8); // TODO: button may be incorrect, test
+  private final JoystickButton  IntakeStopButton = new JoystickButton(Stick, 10); // TODO: Check to see if correct, likely is 10
 
 
   private final CommandXboxController m_XboxController = new CommandXboxController(0);
@@ -86,11 +86,11 @@ public class RobotContainer {
 
   public RobotContainer() {
   //Delcaring commands for Pathplanner to be able to use them (See pathplanner docs for for more info)
+  NamedCommands.registerCommand("ArmPIDSourceAmpCmd", new ArmPIDSourceAmpCmd(m_ArmSubsystem));
   NamedCommands.registerCommand("ShooterSpeakerCmd(START)", new ShooterSpeakerCmd(m_ShooterSubsystem, false));
   NamedCommands.registerCommand("ShooterSpeakerCmd(STOP)", new ShooterSpeakerCmd(m_ShooterSubsystem, true));
   NamedCommands.registerCommand("ShooterIntakeCmd(START)", new ShooterSpeakerCmd(m_ShooterSubsystem, false));
   NamedCommands.registerCommand("ShooterIntakeCommand(STOP)", new ShooterIntakeCmd(m_IntakeSubsystem, true));
-  NamedCommands.registerCommand("ArmPIDSpeakerCmd", new ArmPIDSpeakerCmd(m_ArmSubsystem));
   NamedCommands.registerCommand("ArmPIDZeroPositionCmd", new ArmPIDZeroPositionCmd(m_ArmSubsystem));
 
   // Configure the trigger bindings (Swerve)
@@ -130,15 +130,15 @@ public class RobotContainer {
      IntakeRevButton.onFalse(new ShooterIntakeRevCmd(m_IntakeSubsystem, false));
     //  ShootSpeakerButton.onFalse(new ShooterSpeakerCmd(m_ShooterSubsystem, false));
     
-    // // //Bindings for arm
-    // new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).onTrue(new ArmPIDZeroPositionCmd(m_ArmSubsystem));
-    // new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).onTrue(new ArmPIDSourceAmpCmd(m_ArmSubsystem));
-    // new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue3).onTrue(new ArmPIDSpeakerCmd(m_ArmSubsystem));
+    // //Bindings for arm
+    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).onTrue(new ArmPIDZeroPositionCmd(m_ArmSubsystem));
+    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).onTrue(new ArmPIDSourceAmpCmd(m_ArmSubsystem));
+    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue3).onTrue(new ArmPIDSpeakerCmd(m_ArmSubsystem));
 
-    // //Debug controls to run the arm motors manually using the Logitech controller. This will be left in but unused in the event of emergency. 
+    // //Debug controls to run the arm motors manually using the Logitech controller. This will be left in but used in the event of emergency. 
 
-      new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).whileTrue(new DebugRunMotorsCmd(m_ArmSubsystem));
-      new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).whileTrue(new DebugRunMotorsNegCmd(m_ArmSubsystem));
+      // new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).whileTrue(new DebugRunMotorsCmd(m_ArmSubsystem));
+      // new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).whileTrue(new DebugRunMotorsNegCmd(m_ArmSubsystem));
     }
 
     //Our auto commands. 
@@ -151,7 +151,7 @@ public class RobotContainer {
 
       //For an Auto:
         //
-       return new PathPlannerAuto("New Auto");
+       return new PathPlannerAuto("Test_Auto");
     }    
   }
 

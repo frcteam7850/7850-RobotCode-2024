@@ -8,10 +8,16 @@ package frc.robot.commands;
 import frc.robot.Constants.OperatorConstants.ArmConstants;
 import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import java.lang.Math;
 
 //Class
 public class ArmPIDSourceAmpCmd extends Command {
-private final ArmSubsystem m_ArmSubsystem;
+
+  // private double timeAtSetpoint;
+  // private double targetTime = 50;
+  private boolean finish = false;
+
+  private final ArmSubsystem m_ArmSubsystem;
 
   public ArmPIDSourceAmpCmd(ArmSubsystem subsytem) {
     m_ArmSubsystem = subsytem;
@@ -25,8 +31,11 @@ private final ArmSubsystem m_ArmSubsystem;
 
   @Override
   public void execute() {
-    m_ArmSubsystem.SetPosition(ArmConstants.kSourceSetpoint);
-    //Will equal 45 degrees
+
+    if (Math.abs(m_ArmSubsystem.GetEncoderPos() - ArmConstants.kZeroSetpoint) < 0.01) finish = true;
+
+      m_ArmSubsystem.SetPosition(ArmConstants.kSpeakerSetpoint);
+    //Will equal 0 degrees
   }
 
   @Override
@@ -37,7 +46,8 @@ private final ArmSubsystem m_ArmSubsystem;
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    System.out.println("ZERO END");
+    return finish;
   }
 }
 

@@ -81,7 +81,11 @@ public class ArmSubsystem extends SubsystemBase {
     //Functions
     //Main PID function. 
     public void SetPosition(double setpoint){
-           PIDMotorController.setReference(setpoint, CANSparkBase.ControlType.kPosition);
+           PIDMotorController.setReference(setpoint + 0.04, CANSparkBase.ControlType.kPosition);
+    }
+
+    public double GetEncoderPos(){
+      return AbsoluteEncoder.getPosition();
     }
 
     //Backup code
@@ -90,6 +94,8 @@ public class ArmSubsystem extends SubsystemBase {
       //     System.out.println(degrees * EncoderTicksPerDegree);
       //     return degrees * EncoderTicksPerDegree;
       // }
+
+
 
     //Debug code. REMOVE IN FINAL BUILD
     public void DebugRunArmPositive(){
@@ -133,6 +139,5 @@ public class ArmSubsystem extends SubsystemBase {
       SmartDashboard.putNumber("kD", OperatorConstants.ArmConstants.Kd);
       SmartDashboard.putNumber("Abs Encoder Position Raw", AbsoluteEncoder.getPosition());
       SmartDashboard.putNumber("Abs Encoder Position", AbsoluteEncoder.getPosition()*180);
-      System.out.println(AbsoluteEncoder.getPosition());
     }
 }

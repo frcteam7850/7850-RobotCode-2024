@@ -11,11 +11,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 //Class
 public class ShooterSpeakerCmd extends Command {
+
 private final ShooterSubsystem m_ShooterSubsystem;
-private boolean shooterButtonPressed;
+private boolean shooterButtonPressed = false;
 public boolean ButtonStatusVar;
 
  public ShooterSpeakerCmd(ShooterSubsystem subsytem, boolean released) {
+    System.out.println("Gesint");
     m_ShooterSubsystem = subsytem;
     shooterButtonPressed = released;
 
@@ -28,6 +30,7 @@ public boolean ButtonStatusVar;
   }
 
   public void ButtonStatus(boolean status){
+    System.out.println("Gesibu");
     if (status){
         ButtonStatusVar = true;
     } else{
@@ -38,6 +41,7 @@ public boolean ButtonStatusVar;
 
   @Override
   public void execute() {
+    System.out.println("Gesiex");
     if(shooterButtonPressed == true){
      m_ShooterSubsystem.RunShooter(true);
      ButtonStatus(true);
@@ -50,12 +54,14 @@ public boolean ButtonStatusVar;
 
   @Override
   public void end(boolean interrupted) {
+     System.out.println("Gesiend");
     m_ShooterSubsystem.StopMotor();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    System.out.println("Gesifin");
     return false;
   }
 }
