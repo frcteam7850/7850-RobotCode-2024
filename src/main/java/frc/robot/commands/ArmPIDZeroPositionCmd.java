@@ -26,7 +26,7 @@ public class ArmPIDZeroPositionCmd extends Command {
 //haha
   @Override
   public void execute() {
-      m_ArmSubsystem.SetPosition(ArmConstants.kZeroSetpoint - 0.03); //Check the need for this offset before starting the robot. 
+      m_ArmSubsystem.SetPosition(ArmConstants.kZeroSetpoint - 0.06); //Check the need for this offset before starting the robot. 
     //Will equal 0 degrees
   }
 

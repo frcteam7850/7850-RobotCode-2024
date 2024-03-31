@@ -25,7 +25,7 @@ public class ArmPIDSourceAmpCmd extends Command {
 //haha
   @Override
   public void execute() {
-      m_ArmSubsystem.SetPosition(ArmConstants.kSpeakerSetpoint);
+      m_ArmSubsystem.SetPosition(ArmConstants.kSourceSetpoint);
     //Will equal 0 degrees
   }
 

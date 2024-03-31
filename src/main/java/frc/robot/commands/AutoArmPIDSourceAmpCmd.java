@@ -28,8 +28,8 @@ public class AutoArmPIDSourceAmpCmd extends Command {
   @Override
   public void execute() {
       finish = false;
-      m_ArmSubsystem.SetPosition(ArmConstants.kSpeakerSetpoint);
-      if(((ArmConstants.kSpeakerSetpoint + ArmConstants.kPIDShutdownRange) > (ArmSubsystem.GetEncoderPos())) && ((ArmConstants.kSpeakerSetpoint - ArmConstants.kPIDShutdownRange) < (ArmSubsystem.GetEncoderPos()))){
+      m_ArmSubsystem.SetPosition(ArmConstants.kSourceSetpoint);
+      if(((ArmConstants.kSourceSetpoint + ArmConstants.kPIDShutdownRange) > (ArmSubsystem.GetEncoderPos())) && ((ArmConstants.kSourceSetpoint - ArmConstants.kPIDShutdownRange) < (ArmSubsystem.GetEncoderPos()))){
         finish = true;
       }
     //Will equal 0 degrees

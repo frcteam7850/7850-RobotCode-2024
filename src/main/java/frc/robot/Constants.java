@@ -201,8 +201,8 @@ public final class Constants extends RobotContainer{
       public static final double kFF = 0;  //We may not need a FeedForward. 
 
       public static final double kZeroSetpoint = 0;
-      public static final double kSourceSetpoint = 0.53;
-      public static final double kSpeakerSetpoint = 0.315; //0.19  
+      public static final double kSourceSetpoint = 0.27;
+      public static final double kSpeakerSetpoint = 0.53; //0.19  
 
       // Inverted?
       public static final boolean ArmMotor1IsInverted = true;
@@ -241,7 +241,7 @@ public final class Constants extends RobotContainer{
 
       //Speeds
       public static final double kShooterSpeedLow = -0.17; 
-      public static final double kIntakeSpeed = -0.2; 
+      public static final double kIntakeSpeed = -0.5; 
 
       public static final double kShooterSpeedHigh = -1; 
       public static final double kIntakeRevSpeed = 0.2; 
