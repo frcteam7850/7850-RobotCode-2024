@@ -6,7 +6,6 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -86,12 +85,12 @@ public class RobotContainer {
 
   public RobotContainer() {
   //Delcaring commands for Pathplanner to be able to use them (See pathplanner docs for for more info)
-  NamedCommands.registerCommand("ArmPIDSourceAmpCmd", new ArmPIDSourceAmpCmd(m_ArmSubsystem));
-  NamedCommands.registerCommand("ShooterSpeakerCmd(START)", new ShooterSpeakerCmd(m_ShooterSubsystem, false));
-  NamedCommands.registerCommand("ShooterSpeakerCmd(STOP)", new ShooterSpeakerCmd(m_ShooterSubsystem, true));
-  NamedCommands.registerCommand("ShooterIntakeCmd(START)", new ShooterSpeakerCmd(m_ShooterSubsystem, false));
-  NamedCommands.registerCommand("ShooterIntakeCommand(STOP)", new ShooterIntakeCmd(m_IntakeSubsystem, true));
-  NamedCommands.registerCommand("ArmPIDZeroPositionCmd", new ArmPIDZeroPositionCmd(m_ArmSubsystem));
+  NamedCommands.registerCommand("ArmPIDSourceAmpCmd", new AutoArmPIDSourceAmpCmd(m_ArmSubsystem));
+  NamedCommands.registerCommand("ShooterSpeakerCmd(START)", new AutoShooterSpeakerCmd(m_ShooterSubsystem, true));
+  NamedCommands.registerCommand("ShooterSpeakerCmd(STOP)", new AutoShooterSpeakerCmd(m_ShooterSubsystem, false));
+  NamedCommands.registerCommand("ShooterIntakeCommand(START)", new AutoShooterIntakeCmd(m_IntakeSubsystem, true));
+  NamedCommands.registerCommand("ShooterIntakeCommand(STOP)", new AutoShooterIntakeCmd(m_IntakeSubsystem, false));
+  NamedCommands.registerCommand("ArmPIDZeroPositionCmd", new AutoArmPIDZeroPositionCmd(m_ArmSubsystem));
 
   // Configure the trigger bindings (Swerve)
   configureBindings();
@@ -109,32 +108,32 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    //Bindings for swerve stuff
-     m_XboxController.button(Button.kY.value).onTrue(new InstantCommand(() -> m_SwerveSubsystem.zeroGyro()));
-     m_XboxController.button(Button.kB.value).onTrue(new InstantCommand(() -> m_SwerveSubsystem.setWheelsToX()));
+  //Bindings for Swerve 
+   m_XboxController.button(Button.kY.value).onTrue(new InstantCommand(() -> m_SwerveSubsystem.zeroGyro()));
+   m_XboxController.button(Button.kB.value).onTrue(new InstantCommand(() -> m_SwerveSubsystem.setWheelsToX()));
 
-    // Bindings for our grabber/shooter 
-     IntakeButton.onTrue(new ShooterIntakeCmd(m_IntakeSubsystem, true));
-     ShootAmpButton.onTrue(new ShooterAmpCmd(m_ShooterSubsystem, true));
-     IntakeRevButton.onTrue(new ShooterIntakeRevCmd(m_IntakeSubsystem, true));
-     ShootSpeakerButton.onTrue(new ShooterSpeakerCmd(m_ShooterSubsystem, true));
-     ShooterStopButton.onTrue(new ShooterAmpCmd(m_ShooterSubsystem, false));
-     IntakeStopButton.onTrue(new ShooterIntakeCmd(m_IntakeSubsystem, false));
+  // Bindings for our grabber/shooter 
+   IntakeButton.onTrue(new ShooterIntakeCmd(m_IntakeSubsystem, true));
+   ShootAmpButton.onTrue(new ShooterAmpCmd(m_ShooterSubsystem, true));
+   IntakeRevButton.onTrue(new ShooterIntakeRevCmd(m_IntakeSubsystem, true));
+   ShootSpeakerButton.onTrue(new ShooterSpeakerCmd(m_ShooterSubsystem, true));
+   ShooterStopButton.onTrue(new ShooterAmpCmd(m_ShooterSubsystem, false));
+   IntakeStopButton.onTrue(new ShooterIntakeCmd(m_IntakeSubsystem, false));
 
-     IntakeButton.onFalse(new ShooterIntakeCmd(m_IntakeSubsystem, false));
-    //  ShootAmpButton.onFalse(new ShooterAmpCmd(m_ShooterSubsystem, false));
-     IntakeRevButton.onFalse(new ShooterIntakeRevCmd(m_IntakeSubsystem, false));
-    //  ShootSpeakerButton.onFalse(new ShooterSpeakerCmd(m_ShooterSubsystem, false));
+   IntakeButton.onFalse(new ShooterIntakeCmd(m_IntakeSubsystem, false));
+   //ShootAmpButton.onFalse(new ShooterAmpCmd(m_ShooterSubsystem, false));
+   IntakeRevButton.onFalse(new ShooterIntakeRevCmd(m_IntakeSubsystem, false));
+   //ShootSpeakerButton.onFalse(new ShooterSpeakerCmd(m_ShooterSubsystem, false));
     
-    // //Bindings for arm
-    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).onTrue(new ArmPIDZeroPositionCmd(m_ArmSubsystem));
-    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).onTrue(new ArmPIDSourceAmpCmd(m_ArmSubsystem));
-    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue3).onTrue(new ArmPIDSpeakerCmd(m_ArmSubsystem));
+  //Bindings for arm
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).onTrue(new ArmPIDZeroPositionCmd(m_ArmSubsystem));
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).onTrue(new ArmPIDSourceAmpCmd(m_ArmSubsystem));
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue3).onTrue(new ArmPIDSpeakerCmd(m_ArmSubsystem));
 
-    // //Debug controls to run the arm motors manually using the Logitech controller. This will be left in but used in the event of emergency. 
+  // // //Debug controls to run the arm motors manually using the Logitech controller. This will be left in but used in the event of emergency. 
 
-      // new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).whileTrue(new DebugRunMotorsCmd(m_ArmSubsystem));
-      // new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).whileTrue(new DebugRunMotorsNegCmd(m_ArmSubsystem));
+  //  new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).whileTrue(new DebugRunMotorsCmd(m_ArmSubsystem));
+  //  new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).whileTrue(new DebugRunMotorsNegCmd(m_ArmSubsystem));
     }
 
     //Our auto commands. 

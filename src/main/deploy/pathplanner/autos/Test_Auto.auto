@@ -5,35 +5,28 @@
       "x": 2.0,
       "y": 7.0
     },
-    "rotation": -179.1174421943005
+    "rotation": 180.0
   },
   "command": {
     "type": "sequential",
     "data": {
       "commands": [
         {
-          "type": "sequential",
+          "type": "path",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Simple_Path"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "ArmPIDSpeakerCmd"
-                }
-              },
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "Simple_Path2"
-                }
-              }
-            ]
+            "pathName": "Simple_Path"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ArmPIDSourceAmpCmd"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Simple_Path2"
           }
         }
       ]

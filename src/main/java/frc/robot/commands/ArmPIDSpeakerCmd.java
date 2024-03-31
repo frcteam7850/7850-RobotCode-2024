@@ -8,15 +8,9 @@ package frc.robot.commands;
 import frc.robot.Constants.OperatorConstants.ArmConstants;
 import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import java.lang.Math;
 
 //Class
 public class ArmPIDSpeakerCmd extends Command {
-
-  // private double timeAtSetpoint;
-  // private double targetTime = 50;
-  private boolean finish = false;
-
   private final ArmSubsystem m_ArmSubsystem;
 
   public ArmPIDSpeakerCmd(ArmSubsystem subsytem) {
@@ -31,8 +25,6 @@ public class ArmPIDSpeakerCmd extends Command {
 
   @Override
   public void execute() {
-
-    if (Math.abs(m_ArmSubsystem.GetEncoderPos() - ArmConstants.kZeroSetpoint) < 0.01) finish = true;
       m_ArmSubsystem.SetPosition(ArmConstants.kSourceSetpoint);
     //Will equal 0 degrees
   }

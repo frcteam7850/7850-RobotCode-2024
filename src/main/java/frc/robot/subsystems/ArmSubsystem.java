@@ -9,8 +9,6 @@ import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 
-import javax.xml.validation.SchemaFactory;
-
 import com.revrobotics.CANEncoder;  //Not unused. Don't believe the lies. 
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
@@ -95,9 +93,7 @@ public class ArmSubsystem extends SubsystemBase {
       //     return degrees * EncoderTicksPerDegree;
       // }
 
-
-
-    //Debug code. REMOVE IN FINAL BUILD
+    //Start debug code
     public void DebugRunArmPositive(){
       ArmMotor1.set(ArmConstants.kArmSpeed);
     }

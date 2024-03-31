@@ -8,14 +8,9 @@ package frc.robot.commands;
 import frc.robot.Constants.OperatorConstants.ArmConstants;
 import frc.robot.subsystems.ArmSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
-import java.lang.Math;
 
 //Class
 public class ArmPIDZeroPositionCmd extends Command {
-
-  // private double timeAtSetpoint;
-  // private double targetTime = 50;
-  private boolean finish = false;
 
   private final ArmSubsystem m_ArmSubsystem;
 
@@ -31,7 +26,7 @@ public class ArmPIDZeroPositionCmd extends Command {
 //haha
   @Override
   public void execute() {
-      m_ArmSubsystem.SetPosition(ArmConstants.kZeroSetpoint - 0.03);
+      m_ArmSubsystem.SetPosition(ArmConstants.kZeroSetpoint - 0.03); //Check the need for this offset before starting the robot. 
     //Will equal 0 degrees
   }
 
