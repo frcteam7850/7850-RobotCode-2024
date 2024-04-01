@@ -36,7 +36,7 @@ import frc.robot.commands.ShooterSpeakerCmd;
 import frc.robot.commands.ArmPIDZeroPositionCmd;
 import frc.robot.commands.DebugRunMotorsCmd;
 import frc.robot.commands.DebugRunMotorsNegCmd;
-import frc.robot.commands.ArmPIDSourceAmpCmd;
+import frc.robot.commands.ArmPIDAmpCmd;
 import frc.robot.commands.ArmPIDSpeakerCmd;
 import frc.robot.commands.TeleopSwerve;
 
@@ -127,8 +127,10 @@ public class RobotContainer {
     
   //Bindings for arm
    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).onTrue(new ArmPIDZeroPositionCmd(m_ArmSubsystem));
-   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).onTrue(new ArmPIDSourceAmpCmd(m_ArmSubsystem));
-   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue3).onTrue(new ArmPIDSpeakerCmd(m_ArmSubsystem));
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).onTrue(new ArmPIDSpeakerCmd(m_ArmSubsystem));
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue3).onTrue(new ArmPIDAmpCmd(m_ArmSubsystem));
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue4).onTrue(new ArmPIDSourceCmd(m_ArmSubsystem));
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue5).onTrue(new ArmPIDHighCmd(m_ArmSubsystem));
 
   // // //Debug controls to run the arm motors manually using the Logitech controller. This will be left in but used in the event of emergency. 
 

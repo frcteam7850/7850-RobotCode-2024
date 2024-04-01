@@ -195,14 +195,15 @@ public final class Constants extends RobotContainer{
 
     public static class ArmConstants {
       //PID Tuning Values
-      public static final double Kp = 12;  //tune these bro :sob:
+      public static    final double Kp = 1.5;  //tune these bro :sob:
       public static final double Ki = 0;
-      public static final double Kd = .1;
-      public static final double kFF = 0;  //We may not need a FeedForward. 
+      public static final double Kd = 0;
 
       public static final double kZeroSetpoint = 0;
-      public static final double kSourceSetpoint = 0.27;
-      public static final double kSpeakerSetpoint = 0.53; //0.19  
+      public static final double kSpeakerSetpoint = 0.1; //To config
+      public static final double kAmpSetpoint = 0.27;
+      public static final double kSourceSetpoint = 0.4; //To config
+      public static final double kFullDistance = 0.53; 
 
       // Inverted?
       public static final boolean ArmMotor1IsInverted = true;
@@ -215,8 +216,8 @@ public final class Constants extends RobotContainer{
       public static final int kClimberMotor2ID = 52;
 
       //Misc
-      public static final double NegMaxPIDRange = -0.5; 
-      public static final double PosMaxPIDRange = 0.5;
+      public static final double NegMaxPIDRange = -0.6; 
+      public static final double PosMaxPIDRange = 0.6;
 
       public static final int kAltEncoderCountsPerRev = 4096;
 
@@ -227,8 +228,9 @@ public final class Constants extends RobotContainer{
       //Controller button vals
       public static final int ArmPIDButtonValue1 = 1; //Button assignment on the shooter/arm controller
       public static final int ArmPIDButtonValue2 = 2; //Button assignment on the shooter/arm controller 
-      public static final int ArmPIDButtonValue3 = 3; //Button assignment on the shooter/arm controller     
-
+      public static final int ArmPIDButtonValue3 = 3; //Button assignment on the shooter/arm controller    
+      public static final int ArmPIDButtonValue4 = 4; //Button assignment on the shooter/arm controller 
+      public static final int ArmPIDButtonValue5 = 10; //Button assignment on the shooter/arm controller     
     }
 
     public static class ShooterConstants {
@@ -243,7 +245,7 @@ public final class Constants extends RobotContainer{
       public static final double kShooterSpeedLow = -0.17; 
       public static final double kIntakeSpeed = -0.5; 
 
-      public static final double kShooterSpeedHigh = -1; 
+      public static final double kShooterSpeedHigh = -.9; 
       public static final double kIntakeRevSpeed = 0.2; 
 
       //Button Assignments
