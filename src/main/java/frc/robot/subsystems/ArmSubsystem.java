@@ -86,13 +86,6 @@ public class ArmSubsystem extends SubsystemBase {
       return AbsoluteEncoder.getPosition();
     }
 
-    //Backup code
-      //  private double convertDegreesToEconoderTicks(double degrees){
-      //     double EncoderTicksPerDegree = 1/30;
-      //     System.out.println(degrees * EncoderTicksPerDegree);
-      //     return degrees * EncoderTicksPerDegree;
-      // }
-
     //Start debug code
     public void DebugRunArmPositive(){
       ArmMotor1.set(ArmConstants.kArmSpeed);

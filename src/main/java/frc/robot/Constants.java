@@ -197,7 +197,7 @@ public final class Constants extends RobotContainer{
       //PID Tuning Values
       public static    final double Kp = 1.5;  //tune these bro :sob:
       public static final double Ki = 0;
-      public static final double Kd = 0;
+      public static final double Kd = .4;
 
       public static final double kZeroSetpoint = 0;
       public static final double kSpeakerSetpoint = 0.1; //To config
@@ -212,12 +212,10 @@ public final class Constants extends RobotContainer{
       //CanIDS 
       public static final int kArmMotor1ID = 45; 
       public static final int kArmMotor2ID = 44; 
-      public static final int kClimberMotor1ID = 51;
-      public static final int kClimberMotor2ID = 52;
 
       //Misc
-      public static final double NegMaxPIDRange = -0.6; 
-      public static final double PosMaxPIDRange = 0.6;
+      public static final double NegMaxPIDRange = -0.8; 
+      public static final double PosMaxPIDRange = 0.8;
 
       public static final int kAltEncoderCountsPerRev = 4096;
 
@@ -259,21 +257,18 @@ public final class Constants extends RobotContainer{
     }
     public static class ClimberConstants {
       //CanIDs
-      public static final int kClimberMotor1ID = 51;
-      public static final int kClimberMotor2ID = 52;
-
-      //Speed
-      public static final double kClimberSpeed = 0.3;
+      public static final int kClimberMotor1ID = 61;
+      public static final int kClimberMotor2ID = 62;
 
       //Button Assignment 
       public static final double kClimberSafetyButton = 9;
       public static final double kClimberButton = 9;
 
       //Distance (in motor rotations)
-      public static final int kMotorRotations = 10; //Change
+      public static final int kMotorRotations = -400; //Change
 
       //PID
-      public static final double Kp = 12;
+      public static final double Kp = 0.5;
       public static final double Ki = 0;
       public static final double Kd = .1;
     }
