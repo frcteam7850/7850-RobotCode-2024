@@ -5,16 +5,16 @@
 //Imports
 package frc.robot.commands;
 
-import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.ClimberSubsystemL;
 import edu.wpi.first.wpilibj2.command.Command;
 
 //Class
 public class ClimberSafetyCmd extends Command {
 private boolean status = true;
 private boolean end = false;
-private final ClimberSubsystem m_ClimberSubsystem;
+private final ClimberSubsystemL m_ClimberSubsystem;
 
-  public ClimberSafetyCmd(ClimberSubsystem subsytem) {
+  public ClimberSafetyCmd(ClimberSubsystemL subsytem) {
     m_ClimberSubsystem = subsytem;
     //Required Subsystem
     addRequirements(subsytem);

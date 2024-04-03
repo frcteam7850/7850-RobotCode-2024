@@ -43,7 +43,7 @@ import frc.robot.commands.TeleopSwerve;
 import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.ClimberSubsystemL;
 import frc.robot.subsystems.IntakeSubsystem;
 
 //Class
@@ -80,7 +80,7 @@ public class RobotContainer {
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   private final ArmSubsystem m_ArmSubsystem = new ArmSubsystem();
-  private final ClimberSubsystem m_ClimberSubsystem = new ClimberSubsystem();
+  private final ClimberSubsystemL m_ClimberSubsystem = new ClimberSubsystemL();
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -110,6 +110,7 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
+
   //Bindings for Swerve 
    m_XboxController.button(Button.kY.value).onTrue(new InstantCommand(() -> m_SwerveSubsystem.zeroGyro()));
    m_XboxController.button(Button.kB.value).onTrue(new InstantCommand(() -> m_SwerveSubsystem.setWheelsToX()));
@@ -128,21 +129,21 @@ public class RobotContainer {
    //ShootSpeakerButton.onFalse(new ShooterSpeakerCmd(m_ShooterSubsystem, false));
 
    //Bindings for our climber
-    m_XboxController.button(Button.kStart.value).onTrue(new ClimberSafetyCmd(m_ClimberSubsystem));
-    m_XboxController.button(Button.kA.value).onTrue(new ClimberUpCmd(m_ClimberSubsystem));
-    m_XboxController.button(Button.kX.value).onTrue(new ClimberDownCmd(m_ClimberSubsystem));
+    m_XboxController.button(Button.kStart.value).whileTrue(new ClimberSafetyCmd(m_ClimberSubsystem));
+    m_XboxController.button(Button.kA.value).whileTrue(new ClimberUpCmd(m_ClimberSubsystem));
+    m_XboxController.button(Button.kX.value).whileTrue(new ClimberDownCmd(m_ClimberSubsystem));
 
-  // //Bindings for arm
-  //  new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).onTrue(new ArmPIDZeroPositionCmd(m_ArmSubsystem));
-  //  new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).onTrue(new ArmPIDSpeakerCmd(m_ArmSubsystem));
-  //  new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue3).onTrue(new ArmPIDAmpCmd(m_ArmSubsystem));
-  //  new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue4).onTrue(new ArmPIDSourceCmd(m_ArmSubsystem));
-  //  new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue5).onTrue(new ArmPIDHighCmd(m_ArmSubsystem));
+  //Bindings for arm
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).onTrue(new ArmPIDZeroPositionCmd(m_ArmSubsystem));
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).onTrue(new ArmPIDSpeakerCmd(m_ArmSubsystem));
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue3).onTrue(new ArmPIDAmpCmd(m_ArmSubsystem));
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue4).onTrue(new ArmPIDSourceCmd(m_ArmSubsystem));
+   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue5).onTrue(new ArmPIDHighCmd(m_ArmSubsystem));
 
   // // //Debug controls to run the arm motors manually using the Logitech controller. This will be left in but used in the event of emergency. 
 
-   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).whileTrue(new DebugRunMotorsCmd(m_ArmSubsystem));
-   new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).whileTrue(new DebugRunMotorsNegCmd(m_ArmSubsystem));
+  //  new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).whileTrue(new DebugRunMotorsCmd(m_ArmSubsystem));
+  //  new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).whileTrue(new DebugRunMotorsNegCmd(m_ArmSubsystem));
     }
 
     //Our auto commands. 
@@ -157,7 +158,7 @@ public class RobotContainer {
         //return new PathPlannerAuto("AutoName")
         
        return new PathPlannerAuto("Test_Auto");
-    }    
+    }     
   }
 
   

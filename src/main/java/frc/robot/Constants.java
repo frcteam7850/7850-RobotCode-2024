@@ -201,7 +201,7 @@ public final class Constants extends RobotContainer{
 
       public static final double kZeroSetpoint = 0;
       public static final double kSpeakerSetpoint = 0.1; //To config
-      public static final double kAmpSetpoint = 0.27;
+      public static final double kAmpSetpoint = 0.285;
       public static final double kSourceSetpoint = 0.4; //To config
       public static final double kFullDistance = 0.53; 
 
@@ -265,7 +265,7 @@ public final class Constants extends RobotContainer{
       public static final double kClimberButton = 9;
 
       //Distance (in motor rotations)
-      public static final int kMotorRotations = -400; //Change
+      public static final double kClimberSpeed = -0.8;
 
       //PID
       public static final double Kp = 0.5;
