@@ -17,10 +17,10 @@ public class ClimberSubsystemR extends SubsystemBase {
        private CANSparkMax ClimberMotorR;
        private RelativeEncoder ClimberMotorREncoder;
 
-       public boolean Safety = false;
+       public boolean Safety = true;
 
     public ClimberSubsystemR(){
-        ClimberMotorR = new CANSparkMax(ClimberConstants.kClimberMotor2ID, MotorType.kBrushless);
+        ClimberMotorR = new CANSparkMax(ClimberConstants.kClimberMotor1ID, MotorType.kBrushless);
         ClimberMotorREncoder = ClimberMotorR.getEncoder();
     }
 

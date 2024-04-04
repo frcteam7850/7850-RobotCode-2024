@@ -257,8 +257,8 @@ public final class Constants extends RobotContainer{
     }
     public static class ClimberConstants {
       //CanIDs
-      public static final int kClimberMotor1ID = 61;
-      public static final int kClimberMotor2ID = 62;
+      public static final int kClimberMotor1ID = 21;
+      public static final int kClimberMotor2ID = 22;
 
       //Button Assignment 
       public static final double kClimberSafetyButton = 9;

@@ -14,14 +14,15 @@ import frc.robot.Constants.OperatorConstants.ClimberConstants;
 
 public class ClimberSubsystemL extends SubsystemBase {
     //Creating Vars
-       private CANSparkMax ClimberMotorR;
+       private CANSparkMax ClimberMotorL;
        private RelativeEncoder ClimberMotorREncoder;
 
-       public boolean Safety = false;
+       public boolean Safety = true;
 
     public ClimberSubsystemL(){
-        ClimberMotorR = new CANSparkMax(ClimberConstants.kClimberMotor2ID, MotorType.kBrushless);
-        ClimberMotorREncoder = ClimberMotorR.getEncoder();
+        
+        ClimberMotorL = new CANSparkMax(ClimberConstants.kClimberMotor2ID, MotorType.kBrushless);
+        ClimberMotorREncoder = ClimberMotorL.getEncoder();
     }
 
     //Functions
@@ -34,19 +35,19 @@ public class ClimberSubsystemL extends SubsystemBase {
    //Start shooter code
     public void RunPositive(){
         if(Safety){
-         ClimberMotorR.set((ClimberConstants.kClimberSpeed) * -1);
+         ClimberMotorL.set((ClimberConstants.kClimberSpeed) * -1);
         }
       }
   
       public void RunNegative(){
        if(Safety){
-         ClimberMotorR.set(ClimberConstants.kClimberSpeed);
+         ClimberMotorL.set(ClimberConstants.kClimberSpeed);
         }
       }
     //End climber code
 
     public void StopMotor(){
-        ClimberMotorR.stopMotor();
+        ClimberMotorL.stopMotor();
     }
 
     //Periodic Function

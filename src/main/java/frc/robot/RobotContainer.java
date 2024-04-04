@@ -44,6 +44,7 @@ import frc.robot.subsystems.SwerveSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.ClimberSubsystemL;
+import frc.robot.subsystems.ClimberSubsystemR;
 import frc.robot.subsystems.IntakeSubsystem;
 
 //Class
@@ -80,7 +81,9 @@ public class RobotContainer {
   private final ShooterSubsystem m_ShooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem m_IntakeSubsystem = new IntakeSubsystem();
   private final ArmSubsystem m_ArmSubsystem = new ArmSubsystem();
-  private final ClimberSubsystemL m_ClimberSubsystem = new ClimberSubsystemL();
+  private final ClimberSubsystemL m_ClimberSubsystemL = new ClimberSubsystemL();
+    private final ClimberSubsystemR m_ClimberSubsystemR = new ClimberSubsystemR();
+
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -129,11 +132,12 @@ public class RobotContainer {
    //ShootSpeakerButton.onFalse(new ShooterSpeakerCmd(m_ShooterSubsystem, false));
 
    //Bindings for our climber
-    m_XboxController.button(Button.kStart.value).whileTrue(new ClimberSafetyCmd(m_ClimberSubsystem));
-    m_XboxController.button(Button.kA.value).whileTrue(new ClimberUpCmd(m_ClimberSubsystem));
-    m_XboxController.button(Button.kX.value).whileTrue(new ClimberDownCmd(m_ClimberSubsystem));
+    m_XboxController.button(Button.kRightBumper.value).whileTrue(new ClimberLUpCmd(m_ClimberSubsystemL));
+    m_XboxController.button(Button.kLeftBumper.value).whileTrue(new ClimberRUpCmd(m_ClimberSubsystemR));
+    m_XboxController.button(Button.kBack.value).whileTrue(new ClimberLDownCmd(m_ClimberSubsystemL));
+    m_XboxController.button(Button.kStart.value).whileTrue(new ClimberRDownCmd(m_ClimberSubsystemR));
 
-  //Bindings for arm
+  // //Bindings for arm
    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).onTrue(new ArmPIDZeroPositionCmd(m_ArmSubsystem));
    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue2).onTrue(new ArmPIDSpeakerCmd(m_ArmSubsystem));
    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue3).onTrue(new ArmPIDAmpCmd(m_ArmSubsystem));
@@ -157,8 +161,6 @@ public class RobotContainer {
       //For an Auto:
         //return new PathPlannerAuto("AutoName")
         
-       return new PathPlannerAuto("Test_Auto");
+       return new PathPlannerAuto("TestingShooterAuto");
     }     
   }
-
-  

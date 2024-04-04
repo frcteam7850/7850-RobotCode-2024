@@ -1,0 +1,117 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.5,
+      "y": 5.56
+    },
+    "rotation": 180.0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "ArmPIDSpeakerCmd"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterSpeakerCmd(START)"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterSpeakerCmd(STOP)"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "TestMatchAuto_1"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "ArmPIDZeroPositionCmd"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterIntakeCmd(START)"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "TestMatchAuto2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterSpeakerCmd(STOP)"
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "TestMatchAuto_3"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "ArmPIDZeroPositionCmd"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterSpeakerCmd(START)"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 3.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterSpeakerCmd(STOP)"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}
