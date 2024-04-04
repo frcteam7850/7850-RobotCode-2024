@@ -14,7 +14,7 @@
         {
           "type": "named",
           "data": {
-            "name": "ArmPIDSpeakerCmd"
+            "name": "ArmPIDSourceAmpCmd"
           }
         },
         {
@@ -26,7 +26,19 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterIntakeCmd(START)"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.5
           }
         },
         {
@@ -85,7 +97,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "ArmPIDZeroPositionCmd"
+                  "name": "ArmPIDSourceAmpCmd"
                 }
               }
             ]
@@ -100,13 +112,31 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 3.0
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterIntakeCmd(START)"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.5
           }
         },
         {
           "type": "named",
           "data": {
             "name": "ShooterSpeakerCmd(STOP)"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterIntakeCommand(STOP)"
           }
         }
       ]

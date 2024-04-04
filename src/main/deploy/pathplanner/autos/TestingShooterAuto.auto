@@ -14,19 +14,19 @@
         {
           "type": "named",
           "data": {
-            "name": "ArmPIDSpeakerCmd"
+            "name": "ArmPIDSourceAmpCmd"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "ShooterIntakeCmd(START)"
+            "name": "ShooterSpeakerCmd(START)"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 2.0
+            "waitTime": 1.0
           }
         },
         {

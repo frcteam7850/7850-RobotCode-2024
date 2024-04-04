@@ -90,7 +90,7 @@ public class RobotContainer {
 
   public RobotContainer() {
   //Delcaring commands for Pathplanner to be able to use them (See pathplanner docs for for more info)
-  NamedCommands.registerCommand("ArmPIDSourceAmpCmd", new AutoArmPIDSourceAmpCmd(m_ArmSubsystem));
+  NamedCommands.registerCommand("ArmPIDSourceAmpCmd", new AutoArmPIDSpeakerCmd(m_ArmSubsystem));
   NamedCommands.registerCommand("ShooterSpeakerCmd(START)", new AutoShooterSpeakerCmd(m_ShooterSubsystem, true));
   NamedCommands.registerCommand("ShooterSpeakerCmd(STOP)", new AutoShooterSpeakerCmd(m_ShooterSubsystem, false));
   NamedCommands.registerCommand("ShooterIntakeCommand(START)", new AutoShooterIntakeCmd(m_IntakeSubsystem, true));
@@ -132,10 +132,10 @@ public class RobotContainer {
    //ShootSpeakerButton.onFalse(new ShooterSpeakerCmd(m_ShooterSubsystem, false));
 
    //Bindings for our climber
-    m_XboxController.button(Button.kRightBumper.value).whileTrue(new ClimberLUpCmd(m_ClimberSubsystemL));
     m_XboxController.button(Button.kLeftBumper.value).whileTrue(new ClimberRUpCmd(m_ClimberSubsystemR));
-    m_XboxController.button(Button.kBack.value).whileTrue(new ClimberLDownCmd(m_ClimberSubsystemL));
-    m_XboxController.button(Button.kStart.value).whileTrue(new ClimberRDownCmd(m_ClimberSubsystemR));
+    m_XboxController.button(Button.kRightBumper.value).whileTrue(new ClimberLDownCmd(m_ClimberSubsystemL));
+    m_XboxController.button(Button.kBack.value).whileTrue(new ClimberRDownCmd(m_ClimberSubsystemR));
+    m_XboxController.button(Button.kStart.value).whileTrue(new ClimberLUpCmd(m_ClimberSubsystemL));
 
   // //Bindings for arm
    new JoystickButton(Stick, ArmConstants.ArmPIDButtonValue1).onTrue(new ArmPIDZeroPositionCmd(m_ArmSubsystem));
