@@ -2,6 +2,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+//Thank you to team 3926 for supplying us with their code and Alex for debugging with us!
+
 package frc.robot.commands;
 
 import java.util.function.BooleanSupplier;
@@ -24,6 +26,7 @@ public class TeleopSwerve extends Command {
   private SlewRateLimiter translationLimiter = new SlewRateLimiter(3.0); //can only change by 3 m/s in the span of 1 s
   private SlewRateLimiter strafeLimiter = new SlewRateLimiter(3.0);
   private SlewRateLimiter rotationLimiter = new SlewRateLimiter(3.0);
+  
   /** Creates a new TeleopSwerve. */
   public TeleopSwerve(SwerveSubsystem SwerveSubsystem,
       DoubleSupplier translationSupplier,
@@ -59,15 +62,15 @@ public class TeleopSwerve extends Command {
 
     /* Drive */
     m_SwerveSubsystem.drive(
+        //Attempted to fix ze invert by multipying by neg. 1. prob won't work. we'll see!!!!
         //the joystick values (-1 to 1) multiplied by the max speed of the drivetrain
-        new Translation2d(translationVal, strafeVal).times(Constants.SwerveConstants.maxSpeed),
+        new Translation2d(translationVal, strafeVal).times(Constants.SwerveConstants.maxSpeed).times(-1),
         //rotation value times max spin speed
-        rotationVal * Constants.SwerveConstants.maxAngularVelocity,
+        rotationVal * Constants.SwerveConstants.maxAngularVelocity * -1,
         //whether or not in field centric mode
         !m_robotCentricSupplier.getAsBoolean(),
         //open loop control
         true);
-
   }
 
   // Called once the command ends or is interrupted.

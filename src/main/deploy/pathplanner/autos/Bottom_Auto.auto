@@ -1,0 +1,139 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.25,
+      "y": 6.75
+    },
+    "rotation": -122.41319273358792
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "ArmPIDSpeakerCmd"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterSpeakerCmd(START)"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterIntakeCmd(START)"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterSpeakerCmd(STOP)"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterIntakeCommand(STOP)"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ArmPIDZeroPositionCmd"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterIntakeCmd(START)"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Bottom_Auto_1"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Bottom_Auto_2"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ArmPIDSpeakerCmd"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Bottom_Auto_3"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterSpeakerCmd(START)"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterIntakeCmd(START)"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterIntakeCommand(STOP)"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ShooterSpeakerCmd(STOP)"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ArmPIDZeroPositionCmd"
+          }
+        }
+      ]
+    }
+  },
+  "folder": null,
+  "choreoAuto": false
+}

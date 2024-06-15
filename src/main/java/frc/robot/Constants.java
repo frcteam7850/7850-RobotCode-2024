@@ -4,7 +4,7 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkBase.IdleMode;
 
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -12,7 +12,10 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.lib.SwerveModuleConstants;
+
+import frc.robot.RobotContainer;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -22,7 +25,7 @@ import frc.lib.SwerveModuleConstants;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {
+public final class Constants extends RobotContainer{
   public static final class SwerveConstants{
     public static final double inputDeadband = .1;
     public static final boolean invertnavx = false;
@@ -99,7 +102,7 @@ public final class Constants {
       public static final int driveMotorID = 7; 
       public static final int angleMotorID = 9; 
       public static final int canCoderID = 8;
-      public static final Rotation2d angleOffset = Rotation2d.fromDegrees(345.7);
+      public static final Rotation2d angleOffset = Rotation2d.fromDegrees(347.7);
     /* Angle Motor PID Values */
       public static final double angleKP = 0.01; //to tune
       public static final double angleKI = 0.0; //to tune
@@ -116,7 +119,7 @@ public final class Constants {
       public static final int driveMotorID = 4;
       public static final int angleMotorID = 6;
       public static final int canCoderID = 5;
-      public static final Rotation2d angleOffset = Rotation2d.fromDegrees(201.8);
+      public static final Rotation2d angleOffset = Rotation2d.fromDegrees(196.8);
       /* Angle Motor PID Values */
       public static final double angleKP = 0.01; //to tune
       public static final double angleKI = 0.0; //to tune
@@ -165,16 +168,11 @@ public final class Constants {
 
     public static final boolean angleMotorInvert = false;
     public static final boolean driveMotorInvert = false;
-
-    
-
-
-
   }
 
   public static final class AutoConstants {
     public static final double kMaxSpeedMetersPerSecond = 1.75;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 2;
+    public static final double kMaxAccelerationMetersPerSecondSquared = 1.5; //Changed 3/9/24
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 
@@ -188,6 +186,92 @@ public final class Constants {
             kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
   }
 
+  public static class OperatorConstants {
+    public static class JoystickConstants {
+      public static final int StickPort = 1; //If your controller is unresponsive, make sure you plugged in the XBOX controller first (Stickport 0), and then the logitech (Stickport 1)
+      public static final double kDeadband = 0.12;
+      public static final int kArmYAxis = 1;
+    }
 
+    public static class ArmConstants {
+      //PID Tuning Values
+      public static    final double Kp = 1.5;  //tune these bro :sob:
+      public static final double Ki = 0;
+      public static final double Kd = .4;
 
+      public static final double kZeroSetpoint = 0;
+      public static final double kSpeakerSetpoint = 0.1; //To config
+      public static final double kAmpSetpoint = 0.285;
+      public static final double kSourceSetpoint = 0.4; //To config
+      public static final double kFullDistance = 0.53; 
+
+      // Inverted?
+      public static final boolean ArmMotor1IsInverted = true;
+      public static final boolean ArmMotor2IsInverted = true;
+
+      //CanIDS 
+      public static final int kArmMotor1ID = 45; 
+      public static final int kArmMotor2ID = 44; 
+
+      //Misc
+      public static final double NegMaxPIDRange = -0.8; 
+      public static final double PosMaxPIDRange = 0.8;
+
+      public static final int kAltEncoderCountsPerRev = 4096;
+
+      public static final double kArmSpeed = 0.2;
+
+      public static final double kPIDShutdownRange = 0.02;
+
+      //Controller button vals
+      public static final int ArmPIDButtonValue1 = 1; //Button assignment on the shooter/arm controller
+      public static final int ArmPIDButtonValue2 = 2; //Button assignment on the shooter/arm controller 
+      public static final int ArmPIDButtonValue3 = 3; //Button assignment on the shooter/arm controller    
+      public static final int ArmPIDButtonValue4 = 4; //Button assignment on the shooter/arm controller 
+      public static final int ArmPIDButtonValue5 = 10; //Button assignment on the shooter/arm controller     
+    }
+
+    public static class ShooterConstants {
+
+      //Ids
+      public static final int kMotor1ID = 50; 
+      public static final int kMotor2ID = 51; 
+      public static final int kMotor3ID = 52;
+      public static final int kMotor4ID = 53;
+
+      //Speeds
+      public static final double kShooterSpeedLow = -0.17; 
+      public static final double kIntakeSpeed = -0.5; 
+
+      public static final double kShooterSpeedHigh = -.9; 
+      public static final double kIntakeRevSpeed = 0.2; 
+
+      //Button Assignments
+      public static final int IntakeButton = 8; //Button assignment on the shooter/arm controller
+      public static final int IntakeRevButton = 6; //Button assignment on the shooter/arm controller 
+
+      public static final int shootAmp = 5; //Button assignment on the shooter/arm controller
+      public static final int shootSpeaker = 7; //Button assignment on the shooter/arm controller 
+
+    
+    }
+    public static class ClimberConstants {
+      //CanIDs
+      public static final int kClimberMotor1ID = 21;
+      public static final int kClimberMotor2ID = 22;
+
+      //Button Assignment 
+      public static final double kClimberSafetyButton = 9;
+      public static final double kClimberButton = 9;
+
+      //Distance (in motor rotations)
+      public static final double kClimberSpeed = -0.8;
+
+      //PID
+      public static final double Kp = 0.5;
+      public static final double Ki = 0;
+      public static final double Kd = .1;
+    }
+  }
 }
+
